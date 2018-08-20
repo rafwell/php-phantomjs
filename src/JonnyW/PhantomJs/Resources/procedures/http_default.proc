@@ -10,7 +10,8 @@ var page       = require('webpage').create(),
     response   = {},
     debug      = [],
     logs       = [],
-    procedure  = {};
+    procedure  = {},
+    timeout;
 
 /**
  * Global variables
@@ -88,6 +89,10 @@ phantom.onError = function(msg, trace) {
 page.open ('{{ input.getUrl() }}', '{{ input.getMethod() }}', '{{ input.getBody() }}', function (status) {
     [[ engine.load('page_body_styles') ]]
     [[ engine.load('page_open') ]]
+
+    window.setTimeout(function () { 
+        procedure.execute(status); 
+    }, {{ input.getTimeout() - 200 }});
 });
 
 /**
