@@ -25,6 +25,6 @@ final class StringUtils
      */
     public static function random($length = 20)
     {
-        return substr(md5(mt_rand()), 0, $length);
+       return substr(getmypid().md5(mt_rand()), 0, $length);
     }
 }
